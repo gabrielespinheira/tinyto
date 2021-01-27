@@ -6,7 +6,7 @@ export default async (req, res) => {
   } = req
 
   const shortcut = await database
-    .collection('users')
+    .collection('links')
     .doc(key)
     .get()
     .then(async (doc) => {
@@ -21,7 +21,7 @@ export default async (req, res) => {
         count: ++currentShortcut.count,
       }
 
-      await database.collection('users').doc(key).set(updatedShortcut)
+      await database.collection('links').doc(key).set(updatedShortcut)
 
       return updatedShortcut
     })
