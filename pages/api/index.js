@@ -1,9 +1,9 @@
-import { database } from 'services/firebase'
+import firebase from 'services/firebase'
 
 export default async (req, res) => {
   const param = req.body
 
-  const inserted = await database.collection('links').add({
+  const inserted = await firebase.firestore().collection('links').add({
     origin: param.origin,
     count: 0,
   })

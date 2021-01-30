@@ -1,6 +1,26 @@
+import { useEffect } from 'react'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
+
+import { login, isLogged } from 'sdk/auth'
+
+const LOGGED_ROUTE = '/admin'
 
 export default function Home() {
+  const router = useRouter()
+
+  useEffect(() => {
+    if (isLogged()) {
+      router.push(LOGGED_ROUTE)
+    }
+  }, [])
+
+  const handleSignIn = () => {
+    login().then(() => {
+      router.push(LOGGED_ROUTE)
+    })
+  }
+
   return (
     <>
       <Head>
@@ -9,6 +29,8 @@ export default function Home() {
       </Head>
 
       <h1>URL Shortener</h1>
+
+      <button onClick={handleSignIn}>Login com Google</button>
     </>
   )
 }

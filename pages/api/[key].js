@@ -1,11 +1,12 @@
-import { database } from 'services/firebase'
+import firebase from 'services/firebase'
 
 export default async (req, res) => {
   const {
     query: { key },
   } = req
 
-  const shortcut = await database
+  const shortcut = await firebase
+    .firestore()
     .collection('links')
     .doc(key)
     .get()
@@ -21,7 +22,11 @@ export default async (req, res) => {
         count: ++currentShortcut.count,
       }
 
-      await database.collection('links').doc(key).set(updatedShortcut)
+      await firebase
+        .firestore()
+        .collection('links')
+        .doc(key)
+        .set(updatedShortcut)
 
       return updatedShortcut
     })
