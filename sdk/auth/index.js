@@ -1,5 +1,6 @@
-import firebase from 'services/firebase'
 import cookie from 'js-cookie'
+
+import firebase from 'services/firebase'
 
 const login = async () => {
   const provider = new firebase.auth.GoogleAuthProvider()
