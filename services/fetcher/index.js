@@ -1,6 +1,6 @@
 import cookie from 'js-cookie'
 
-const BASE_URL = `${process.env.API_URL}/wp-json/api/v1`
+const BASE_URL = `/api`
 
 async function fetcher(url) {
   const token = cookie.get('token')
