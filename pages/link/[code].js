@@ -4,22 +4,24 @@ import { useEffect } from 'react'
 
 export default function Access() {
   const router = useRouter()
-  const { link } = router.query
+  const { code } = router.query
 
   useEffect(() => {
     async function loadLink() {
-      if (typeof link === 'undefined') {
+      if (typeof code === 'undefined') {
         return
       }
 
-      const res = await fetch(`/api/${link}`)
+      const res = await fetch(`/api/shortcuts/${code}`)
       const data = await res.json()
 
-      router.push(data.origin)
+      console.log(data)
+
+      return router.push(data.origin)
     }
 
     loadLink()
-  }, [link])
+  }, [code])
 
   return (
     <>

@@ -11,7 +11,6 @@ export default async (req, res) => {
     .auth()
     .verifyIdToken(token)
     .then((decodedToken) => {
-      console.log(decodedToken)
       return res.status(200).json({ user: decodedToken })
     })
     .catch((error) => {

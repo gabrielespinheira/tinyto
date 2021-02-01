@@ -1,16 +1,41 @@
 import firebase from 'services/firebase'
-import firebaseAdmin from 'services/firebase/firebase-admin'
 
 export default async (req, res) => {
   const { code } = req.query
 
-  const token = req.headers.authorization.replace('Bearer ', '')
-  const user = await firebaseAdmin.auth().verifyIdToken(token)
+  // UPDATE
+  if (req.method === 'PUT') {
+    const { origin } = req.body
 
+    // TODO: authorization
+
+    const updated = await firebase
+      .firestore()
+      .collection('links')
+      .doc(code)
+      .update({
+        origin: origin,
+      })
+
+    return res.status(200).json({ success: 'Shortcut updated successfully' })
+  }
+
+  // DELETE
+  if (req.method === 'DELETE') {
+    // TODO: authorization
+
+    const deleted = await firebase
+      .firestore()
+      .collection('links')
+      .doc(code)
+      .delete()
+
+    return res.status(200).json({ success: 'Shortcut deleted successfully' })
+  }
+
+  // READ
   const shortcut = await firebase
     .firestore()
-    .collection('users')
-    .doc(user.uid)
     .collection('links')
     .doc(code)
     .get()
