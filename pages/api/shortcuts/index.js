@@ -6,16 +6,21 @@ export default async (req, res) => {
   const { origin } = req.body
 
   const token = req.headers.authorization.replace('Bearer ', '')
-  const user = await firebaseAdmin.auth().verifyIdToken(token)
 
-  const inserted = await firebase.firestore().collection('shortcuts').add({
-    origin: origin,
-    count: 0,
-    user: user.uid,
-  })
+  try {
+    const user = await firebaseAdmin.auth().verifySessionCookie(token, true)
 
-  return res.status(201).json({
-    url: `http://${req.headers.host}/link/${inserted.id}`,
-    code: inserted.id,
-  })
+    const inserted = await firebase.firestore().collection('shortcuts').add({
+      origin: origin,
+      count: 0,
+      user: user.uid,
+    })
+
+    return res.status(201).json({
+      url: `http://${req.headers.host}/link/${inserted.id}`,
+      code: inserted.id,
+    })
+  } catch (err) {
+    return res.status(400).json({ error: err })
+  }
 }

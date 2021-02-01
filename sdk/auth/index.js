@@ -1,4 +1,5 @@
 import cookie from 'js-cookie'
+import axios from 'axios'
 
 import firebase from 'services/firebase'
 
@@ -11,15 +12,22 @@ const login = async () => {
     throw new Error('Não foi possível fazer login com Google')
   }
 
-  const tokenResult = await googleResponse.user.getIdTokenResult()
-  cookie.set('token', tokenResult.token)
+  const googleToken = await googleResponse.user.getIdTokenResult()
+
+  const response = await axios.post(`/api/login`, {
+    token: googleToken.token,
+  })
+
+  // Set session expiration to 8 hours
+  cookie.set('token', response.data.token, { expires: 1 / 3 })
   cookie.set(
     'user',
     JSON.stringify({
       name: googleResponse.user.displayName,
       email: googleResponse.user.email,
       avatar: googleResponse.user.photoURL,
-    })
+    }),
+    { expires: 1 / 3 }
   )
 
   return true

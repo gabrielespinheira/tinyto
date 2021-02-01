@@ -7,15 +7,11 @@ export default async (req, res) => {
 
   const token = req.headers.authorization.replace('Bearer ', '')
 
-  firebaseAdmin
-    .auth()
-    .verifyIdToken(token)
-    .then((decodedToken) => {
-      return res.status(200).json({ user: decodedToken })
-    })
-    .catch((error) => {
-      // Handle error
-      console.warn(error)
-      return res.status(401).json({ error: 'Not authorized' })
-    })
+  try {
+    const user = await firebaseAdmin.auth().verifySessionCookie(token, true)
+
+    return res.status(200).json(user)
+  } catch (err) {
+    return res.status(400).json({ error: err })
+  }
 }
