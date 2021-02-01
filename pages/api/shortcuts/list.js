@@ -8,7 +8,7 @@ export default async (req, res) => {
 
   const shortcuts = await firebase
     .firestore()
-    .collection('links')
+    .collection('shortcuts')
     .where('user', '==', user.uid)
     .get()
 

@@ -11,7 +11,7 @@ export default async (req, res) => {
 
     const updated = await firebase
       .firestore()
-      .collection('links')
+      .collection('shortcuts')
       .doc(code)
       .update({
         origin: origin,
@@ -26,7 +26,7 @@ export default async (req, res) => {
 
     const deleted = await firebase
       .firestore()
-      .collection('links')
+      .collection('shortcuts')
       .doc(code)
       .delete()
 
@@ -36,7 +36,7 @@ export default async (req, res) => {
   // READ
   const shortcut = await firebase
     .firestore()
-    .collection('links')
+    .collection('shortcuts')
     .doc(code)
     .get()
 
@@ -46,7 +46,11 @@ export default async (req, res) => {
     count: ++currentShortcut.count,
   }
 
-  await firebase.firestore().collection('links').doc(code).set(updatedShortcut)
+  await firebase
+    .firestore()
+    .collection('shortcuts')
+    .doc(code)
+    .set(updatedShortcut)
 
   return res.status(200).json(updatedShortcut)
 }

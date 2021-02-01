@@ -8,7 +8,7 @@ export default async (req, res) => {
   const token = req.headers.authorization.replace('Bearer ', '')
   const user = await firebaseAdmin.auth().verifyIdToken(token)
 
-  const inserted = await firebase.firestore().collection('links').add({
+  const inserted = await firebase.firestore().collection('shortcuts').add({
     origin: origin,
     count: 0,
     user: user.uid,

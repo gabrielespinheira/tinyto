@@ -33,6 +33,10 @@ export default function Admin() {
     return window.open(`/link/${id}`)
   }
 
+  const handleNew = () => {
+    return router.push('/admin/new')
+  }
+
   if (!shortcuts) return <div>Loading</div>
   if (error) return <div>Error: {error}</div>
 
@@ -42,9 +46,7 @@ export default function Admin() {
         <title>URL Shortener</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <h1>Hello Admin</h1>
-
+      <h1>Hello Admin</h1> <button onClick={handleNew}>Novo</button>
       <ul>
         {shortcuts &&
           shortcuts.map((shortcut) => (
@@ -58,7 +60,6 @@ export default function Admin() {
             </li>
           ))}
       </ul>
-
       <button onClick={handleSignOut}>Logout</button>
     </>
   )
