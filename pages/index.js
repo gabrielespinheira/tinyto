@@ -16,9 +16,13 @@ export default function Home() {
   }, [])
 
   const handleSignIn = () => {
-    login().then(() => {
-      router.push(LOGGED_ROUTE)
-    })
+    login()
+      .then(() => {
+        router.push(LOGGED_ROUTE)
+      })
+      .catch((err) => {
+        console.warn(err)
+      })
   }
 
   return (
