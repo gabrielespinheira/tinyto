@@ -1,11 +1,12 @@
 import { SWRConfig } from 'swr'
 import { ChakraProvider } from '@chakra-ui/react'
 
+import theme from 'styles/theme'
 import fetcher from 'services/fetcher'
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <SWRConfig
         value={{
           refreshInterval: 0,
