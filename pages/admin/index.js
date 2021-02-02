@@ -17,28 +17,6 @@ export default function Admin() {
     })
   }
 
-  const handleEdit = (id) => {
-    return router.push(`/admin/edit/${id}`)
-  }
-
-  const handleDelete = async (id) => {
-    // TODO: usuário confirmar
-
-    const deleted = await axios.delete(`/api/shortcuts/${id}`)
-
-    return deleted
-
-    // TODO: mutate SWR list
-  }
-
-  const handleOpen = (id) => {
-    return window.open(`/link/${id}`)
-  }
-
-  const handleNew = () => {
-    return router.push('/admin/new')
-  }
-
   if (!shortcuts) return <Loading />
   if (error) return <div>Error: {error}</div>
 
@@ -50,15 +28,10 @@ export default function Admin() {
       </Head>
 
       <Flex maxW="900px" ml="auto" mr="auto" flexDirection="column">
-        <Topbar handleNew={handleNew} handleSignOut={handleSignOut} />
+        <Topbar handleSignOut={handleSignOut} />
 
         <Box bg={useColorModeValue('white', 'gray.700')} borderRadius="md">
-          <Table
-            shortcuts={shortcuts}
-            handleEdit={handleEdit}
-            handleDelete={handleDelete}
-            handleOpen={handleOpen}
-          />
+          <Table shortcuts={shortcuts} />
         </Box>
       </Flex>
     </>

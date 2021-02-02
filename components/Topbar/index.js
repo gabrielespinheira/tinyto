@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
+import cookie from 'js-cookie'
+import axios from 'axios'
 import {
   Grid,
   Flex,
@@ -6,26 +8,37 @@ import {
   Button,
   ButtonGroup,
   useColorMode,
-  Input,
-  Drawer,
-  DrawerBody,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton,
   useDisclosure,
-  Box,
-  FormLabel,
-  InputGroup,
-  InputLeftAddon,
 } from '@chakra-ui/react'
 import { FiLogOut, FiSun, FiMoon, FiPlus } from 'react-icons/fi'
 
-const Topbar = ({ handleNew, handleSignOut }) => {
+import { Drawer } from 'components'
+
+const Topbar = ({ handleSignOut }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { colorMode, toggleColorMode } = useColorMode()
-  const btnRef = React.useRef()
+  const [origin, setOrigin] = useState('')
+  const drawerNewRef = React.useRef()
+
+  const handleNewShortcut = async () => {
+    // TODO: validação http/https
+
+    const token = cookie.get('token')
+
+    const shortcut = await axios.post(
+      `/api/shortcuts`,
+      {
+        origin: 'http://' + origin,
+      },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    )
+
+    onClose()
+
+    // TODO: mudate and update state
+  }
 
   return (
     <Grid templateColumns="repeat(2, 1fr)" alignItems="center" mt="7" mb="10">
@@ -34,7 +47,7 @@ const Topbar = ({ handleNew, handleSignOut }) => {
       <Flex justifyContent="flex-end">
         <ButtonGroup>
           <Button
-            ref={btnRef}
+            ref={drawerNewRef}
             size="sm"
             onClick={onOpen}
             leftIcon={<FiPlus />}
@@ -52,37 +65,14 @@ const Topbar = ({ handleNew, handleSignOut }) => {
       </Flex>
 
       <Drawer
+        title="Criar novo"
         isOpen={isOpen}
-        placement="right"
         onClose={onClose}
-        finalFocusRef={btnRef}
-      >
-        <DrawerOverlay>
-          <DrawerContent>
-            <DrawerCloseButton />
-            <DrawerHeader>Criar novo link</DrawerHeader>
-
-            <DrawerBody>
-              <Box>
-                <FormLabel htmlFor="url">Url</FormLabel>
-                <InputGroup>
-                  <InputLeftAddon>http://</InputLeftAddon>
-                  <Input type="url" id="url" placeholder="google.com" />
-                </InputGroup>
-              </Box>
-            </DrawerBody>
-
-            <DrawerFooter>
-              <Button mr={3} variant="outline" onClick={onClose}>
-                Cancelar
-              </Button>
-              <Button colorScheme="teal" onClick={handleNew}>
-                Criar
-              </Button>
-            </DrawerFooter>
-          </DrawerContent>
-        </DrawerOverlay>
-      </Drawer>
+        handleSubmit={handleNewShortcut}
+        ref={drawerNewRef}
+        inputValue={origin}
+        setInputValue={setOrigin}
+      />
     </Grid>
   )
 }
