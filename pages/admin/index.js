@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import useSWR from 'swr'
-import axios from 'axios'
 import { Flex, Box, useColorModeValue } from '@chakra-ui/react'
 
 import { Loading, Topbar, Table } from 'components'

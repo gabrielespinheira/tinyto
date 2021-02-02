@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import cookie from 'js-cookie'
 import axios from 'axios'
+import { mutate } from 'swr'
 import {
   Grid,
   Flex,
@@ -21,11 +22,9 @@ const Topbar = ({ handleSignOut }) => {
   const drawerNewRef = React.useRef()
 
   const handleNewShortcut = async () => {
-    // TODO: validação http/https
-
     const token = cookie.get('token')
 
-    const shortcut = await axios.post(
+    const added = await axios.post(
       `/api/shortcuts`,
       {
         origin: 'http://' + origin,
@@ -35,9 +34,15 @@ const Topbar = ({ handleSignOut }) => {
       }
     )
 
-    onClose()
+    console.log(added)
 
-    // TODO: mudate and update state
+    if (added.status !== 201) {
+      // TODO: toast error
+      return
+    }
+
+    onClose()
+    mutate('/shortcuts/list')
   }
 
   return (

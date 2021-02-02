@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react'
 import cookie from 'js-cookie'
 import axios from 'axios'
+import { mutate } from 'swr'
 import {
   Table as ChakraTable,
   Thead,
@@ -39,24 +40,24 @@ const Table = ({ shortcuts }) => {
     )
 
     if (edited.status !== 200) {
-      // TODO: error
+      // TODO: toast error
+      return
     }
 
     onClose()
-
-    // TODO: mudate and update state
+    mutate('/shortcuts/list')
   }
 
   const handleDelete = async () => {
     const deleted = await axios.delete(`/api/shortcuts/${code}`)
 
     if (deleted.status !== 200) {
-      // TODO: error
+      // TODO: toast error
+      return
     }
 
     setIsDialogOpen(false)
-
-    // TODO: mutate SWR list
+    mutate('/shortcuts/list')
   }
 
   const handleOpen = (id) => {
