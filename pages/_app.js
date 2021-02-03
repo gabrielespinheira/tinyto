@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }) {
       <SWRConfig
         value={{
           refreshInterval: 0,
-          revalidateOnFocus: false,
+          revalidateOnFocus: true,
           revalidateOnReconnect: true,
           refreshWhenHidden: false,
           refreshWhenOffline: false,
