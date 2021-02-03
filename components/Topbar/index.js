@@ -10,18 +10,30 @@ import {
   ButtonGroup,
   useColorMode,
   useDisclosure,
+  useToast,
 } from '@chakra-ui/react'
 import { FiLogOut, FiSun, FiMoon, FiPlus } from 'react-icons/fi'
 
 import { Drawer } from 'components'
 
 const Topbar = ({ handleSignOut }) => {
+  const toast = useToast()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { colorMode, toggleColorMode } = useColorMode()
   const [origin, setOrigin] = useState('')
   const drawerNewRef = React.useRef()
 
   const handleNewShortcut = async () => {
+    if (origin.length <= 0) {
+      return toast({
+        title: 'Preencha a URL',
+        description: 'Informe um link válido para continuar.',
+        status: 'error',
+        duration: 7000,
+        isClosable: true,
+      })
+    }
+
     const token = cookie.get('token')
 
     const added = await axios.post(
@@ -34,15 +46,24 @@ const Topbar = ({ handleSignOut }) => {
       }
     )
 
-    console.log(added)
-
     if (added.status !== 201) {
-      // TODO: toast error
-      return
+      return toast({
+        title: 'Não foi possível realizar esta ação, tente novamente.',
+        status: 'error',
+        duration: 7000,
+        isClosable: true,
+      })
     }
 
     onClose()
     mutate('/shortcuts/list')
+
+    return toast({
+      title: 'Link criado com sucesso!',
+      status: 'success',
+      duration: 7000,
+      isClosable: true,
+    })
   }
 
   return (

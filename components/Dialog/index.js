@@ -24,7 +24,7 @@ const Dialog = ({ ref, title, message, isOpen, onClose, handleSubmit }) => {
               Cancelar
             </Button>
             <Button size="sm" colorScheme="red" onClick={handleSubmit} ml={3}>
-              Deletar
+              Excluir
             </Button>
           </AlertDialogFooter>
         </AlertDialogContent>

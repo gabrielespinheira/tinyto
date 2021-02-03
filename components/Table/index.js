@@ -12,12 +12,14 @@ import {
   Button,
   ButtonGroup,
   useDisclosure,
+  useToast,
 } from '@chakra-ui/react'
 import { FiEdit3, FiTrash, FiSend } from 'react-icons/fi'
 
 import { Drawer, Dialog } from 'components'
 
-const Table = ({ shortcuts }) => {
+const Table = ({ shortcuts = [] }) => {
+  const toast = useToast()
   const [code, setCode] = useState()
   const [origin, setOrigin] = useState('')
   const [isDialogOpen, setIsDialogOpen] = useState(false)
@@ -27,6 +29,16 @@ const Table = ({ shortcuts }) => {
   const confirmDialogRef = useRef()
 
   const handleEdit = async () => {
+    if (origin.length <= 0) {
+      return toast({
+        title: 'Preencha a URL',
+        description: 'Informe um link válido para continuar.',
+        status: 'error',
+        duration: 7000,
+        isClosable: true,
+      })
+    }
+
     const token = cookie.get('token')
 
     const edited = await axios.put(
@@ -40,24 +52,46 @@ const Table = ({ shortcuts }) => {
     )
 
     if (edited.status !== 200) {
-      // TODO: toast error
-      return
+      return toast({
+        title: 'Não foi possível realizar esta ação, tente novamente.',
+        status: 'error',
+        duration: 7000,
+        isClosable: true,
+      })
     }
 
     onClose()
     mutate('/shortcuts/list')
+
+    return toast({
+      title: 'Link atualizado!',
+      status: 'success',
+      duration: 7000,
+      isClosable: true,
+    })
   }
 
   const handleDelete = async () => {
     const deleted = await axios.delete(`/api/shortcuts/${code}`)
 
     if (deleted.status !== 200) {
-      // TODO: toast error
-      return
+      return toast({
+        title: 'Não foi possível realizar esta ação, tente novamente.',
+        status: 'error',
+        duration: 7000,
+        isClosable: true,
+      })
     }
 
     setIsDialogOpen(false)
     mutate('/shortcuts/list')
+
+    return toast({
+      title: 'Link removido!',
+      status: 'success',
+      duration: 7000,
+      isClosable: true,
+    })
   }
 
   const handleOpen = (id) => {
