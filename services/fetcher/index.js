@@ -5,6 +5,10 @@ const BASE_URL = `/api`
 async function fetcher(url) {
   const token = cookie.get('token')
 
+  if (!token) {
+    return (window.location.href = '/')
+  }
+
   const response = await fetch(BASE_URL + url, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -13,26 +17,9 @@ async function fetcher(url) {
   })
 
   // not authorized
-  /* if (response.status === 403) {
-    const error = new Error('Not authorized!')
-    error.info = await response.json()
-    error.status = response.status
-    error.message = 'Not Authorized'
-
-    // redirect to login
-    window.location.href = '/login'
-
-    throw error
-  } */
-
-  /* if (response.status === 404) {
-    const error = new Error('Not found!')
-    error.info = await response.json()
-    error.status = response.status
-    error.message = 'Not found'
-
-    throw error
-  } */
+  if (response.status === 401) {
+    window.location.href = '/'
+  }
 
   return response.json()
 }

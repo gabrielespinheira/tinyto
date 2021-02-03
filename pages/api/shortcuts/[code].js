@@ -16,7 +16,9 @@ export default async (req, res) => {
 
       return res.status(200).json({ success: 'Shortcut updated successfully' })
     } catch (err) {
-      return res.status(400).json({ error: err })
+      return res
+        .status(400)
+        .json({ error: 'Não foi possível realizar a operação.' })
     }
   }
 
@@ -29,7 +31,9 @@ export default async (req, res) => {
 
       return res.status(200).json({ success: 'Shortcut deleted successfully' })
     } catch (err) {
-      return res.status(400).json({ error: err })
+      return res
+        .status(400)
+        .json({ error: 'Não foi possível realizar a operação.' })
     }
   }
 
@@ -55,6 +59,8 @@ export default async (req, res) => {
 
     return res.status(200).json(updatedShortcut)
   } catch (err) {
-    return res.status(400).json({ error: err })
+    return res
+      .status(400)
+      .json({ error: 'Não foi possível realizar a operação.' })
   }
 }

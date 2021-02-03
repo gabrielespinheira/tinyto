@@ -3,7 +3,11 @@ import firebaseAdmin from 'services/firebase/firebase-admin'
 
 // LIST
 export default async (req, res) => {
-  const token = req.headers.authorization.replace('Bearer ', '')
+  const token = req.headers.authorization?.replace('Bearer ', '')
+
+  if (typeof token === 'undefined') {
+    return res.status(401).json({ error: 'Não autorizado' })
+  }
 
   try {
     const user = await firebaseAdmin.auth().verifySessionCookie(token, true)
@@ -22,6 +26,8 @@ export default async (req, res) => {
 
     return res.status(200).json(list)
   } catch (err) {
-    return res.status(400).json({ error: err })
+    return res
+      .status(400)
+      .json({ error: 'Não foi possível realizar a operação.' })
   }
 }

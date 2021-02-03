@@ -1,11 +1,11 @@
 import firebaseAdmin from 'services/firebase/firebase-admin'
 
 export default async (req, res) => {
-  if (!req.headers.authorization) {
-    return res.status(401).json({ error: 'Token not provided' })
-  }
+  const token = req.headers.authorization?.replace('Bearer ', '')
 
-  const token = req.headers.authorization.replace('Bearer ', '')
+  if (typeof token === 'undefined') {
+    return res.status(401).json({ error: 'Não autorizado' })
+  }
 
   try {
     const user = await firebaseAdmin.auth().verifySessionCookie(token, true)
