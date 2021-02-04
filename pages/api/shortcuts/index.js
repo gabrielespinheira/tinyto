@@ -3,6 +3,8 @@ import firebaseAdmin from 'services/firebase/firebase-admin'
 
 // CREATE
 export default async (req, res) => {
+  // TODO: authorization
+
   const { origin } = req.body
 
   const token = req.headers.authorization?.replace('Bearer ', '')
