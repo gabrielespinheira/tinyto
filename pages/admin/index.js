@@ -22,7 +22,7 @@ export default function Admin() {
   return (
     <>
       <Head>
-        <title>URL Shortener</title>
+        <title>{process.env.NEXT_PUBLIC_PROJECT_NAME}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
