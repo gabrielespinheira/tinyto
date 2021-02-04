@@ -69,7 +69,7 @@ const Topbar = ({ handleSignOut }) => {
 
   return (
     <Grid templateColumns="repeat(2, 1fr)" alignItems="center" mt="7" mb="10">
-      <Heading>URL Shortener</Heading>
+      <Heading>{process.env.NEXT_PUBLIC_PROJECT_NAME}</Heading>
 
       <Flex justifyContent="flex-end">
         <ButtonGroup>
