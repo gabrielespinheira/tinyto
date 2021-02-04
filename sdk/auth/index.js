@@ -7,7 +7,7 @@ const login = async () => {
   const provider = new firebase.auth.GoogleAuthProvider()
 
   try {
-    const googleResponse = await firebase.auth().signInWithPopup(provider)
+    const googleResponse = await firebase.auth().signInWithRedirect(provider)
 
     if (!googleResponse || !googleResponse.user) {
       throw new Error('Não foi possível fazer login com Google')
