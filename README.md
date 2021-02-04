@@ -7,8 +7,8 @@
 
 ### To Do
 
-- [ ] Toast
-- [ ] Google Analytics
+- [x] Toast
+- [x] Google Analytics
 - [ ] Lighthouse
 - [ ] Data de criação e alteração para cada Shortcut
 - [ ] Capturar infos do usuário ao acessar Shortcut
