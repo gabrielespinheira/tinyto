@@ -1,6 +1,7 @@
-import Head from 'next/head'
-import { useRouter } from 'next/router'
 import { useEffect } from 'react'
+import { useRouter } from 'next/router'
+
+import { Loading } from 'components'
 
 export default function Access() {
   const router = useRouter()
@@ -15,7 +16,9 @@ export default function Access() {
       const res = await fetch(`/api/shortcuts/${code}`)
       const data = await res.json()
 
-      console.log(data)
+      if (data?.error) {
+        return <Loading white={true} />
+      }
 
       return router.push(data.origin)
     }
@@ -23,12 +26,5 @@ export default function Access() {
     loadLink()
   }, [code])
 
-  return (
-    <>
-      <Head>
-        <title>Loading</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-    </>
-  )
+  return <Loading white={true} />
 }

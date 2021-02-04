@@ -95,7 +95,7 @@ const Table = ({ shortcuts = [] }) => {
   }
 
   const handleOpen = (id) => {
-    return window.open(`/link/${id}`)
+    return window.open(`/i/${id}`)
   }
 
   const originWithoutHttp = (origin) => {

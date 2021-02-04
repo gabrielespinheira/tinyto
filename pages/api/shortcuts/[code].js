@@ -46,8 +46,9 @@ export default async (req, res) => {
       .get()
 
     const currentShortcut = shortcut.data()
+
     const updatedShortcut = {
-      ...currentShortcut,
+      origin: currentShortcut.origin,
       count: ++currentShortcut.count,
     }
 
@@ -55,12 +56,12 @@ export default async (req, res) => {
       .firestore()
       .collection('shortcuts')
       .doc(code)
-      .set(updatedShortcut)
+      .set({ ...updatedShortcut, user: currentShortcut.user })
 
     return res.status(200).json(updatedShortcut)
   } catch (err) {
     return res
-      .status(400)
+      .status(403)
       .json({ error: 'Não foi possível realizar a operação.' })
   }
 }

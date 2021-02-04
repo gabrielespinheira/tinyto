@@ -1,6 +1,6 @@
-import { Spinner, Flex } from '@chakra-ui/react'
+import { Flex, Heading } from '@chakra-ui/react'
 
-const Loading = ({ white = false }) => {
+const Error = ({ white = false, message }) => {
   return (
     <Flex
       position="fixed"
@@ -13,9 +13,9 @@ const Loading = ({ white = false }) => {
       alignItems="center"
       bg={white && 'white'}
     >
-      <Spinner size="xl" color={white && 'black'} />
+      <Heading size="md">{message}</Heading>
     </Flex>
   )
 }
 
-export default Loading
+export default Error
