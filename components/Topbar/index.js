@@ -57,6 +57,7 @@ const Topbar = ({ handleSignOut }) => {
 
     onClose()
     mutate('/shortcuts/list')
+    setOrigin('')
 
     return toast({
       title: 'Link criado com sucesso!',
