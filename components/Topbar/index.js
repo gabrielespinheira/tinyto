@@ -16,12 +16,11 @@ import { FiLogOut, FiSun, FiMoon, FiPlus } from 'react-icons/fi'
 
 import { Drawer } from 'components'
 
-const Topbar = ({ handleSignOut }) => {
+const Topbar = ({ drawerNewRef, handleSignOut }) => {
   const toast = useToast()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { colorMode, toggleColorMode } = useColorMode()
   const [origin, setOrigin] = useState('')
-  const drawerNewRef = React.useRef()
 
   const handleNewShortcut = async () => {
     if (origin.length <= 0) {

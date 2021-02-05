@@ -1,3 +1,4 @@
+import { useRef } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import useSWR from 'swr'
@@ -7,6 +8,9 @@ import { Loading, Topbar, Table } from 'components'
 import { logout } from 'sdk/auth'
 
 export default function Admin() {
+  const drawerNewRef = useRef()
+  const drawerEditRef = useRef()
+  const confirmDialogRef = useRef()
   const router = useRouter()
   const { data: shortcuts, error } = useSWR('/shortcuts/list')
 
@@ -16,9 +20,6 @@ export default function Admin() {
     })
   }
 
-  if (!shortcuts) return <Loading />
-  if (error) return <div>Error: {error}</div>
-
   return (
     <>
       <Head>
@@ -27,10 +28,18 @@ export default function Admin() {
       </Head>
 
       <Flex maxW="900px" ml="auto" mr="auto" flexDirection="column">
-        <Topbar handleSignOut={handleSignOut} />
+        <Topbar handleSignOut={handleSignOut} drawerNewRef={drawerNewRef} />
 
         <Box bg={useColorModeValue('white', 'gray.700')} borderRadius="md">
-          <Table shortcuts={shortcuts} />
+          {!shortcuts || error ? (
+            <Loading />
+          ) : (
+            <Table
+              shortcuts={shortcuts}
+              drawerEditRef={drawerEditRef}
+              confirmDialogRef={confirmDialogRef}
+            />
+          )}
         </Box>
       </Flex>
     </>

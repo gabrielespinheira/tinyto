@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, forwardRef } from 'react'
 import cookie from 'js-cookie'
 import axios from 'axios'
 import { mutate } from 'swr'
@@ -18,15 +18,12 @@ import { FiEdit3, FiTrash, FiSend } from 'react-icons/fi'
 
 import { Drawer, Dialog } from 'components'
 
-const Table = ({ shortcuts = [] }) => {
+const Table = ({ drawerEditRef, confirmDialogRef, shortcuts = [] }) => {
   const toast = useToast()
   const [code, setCode] = useState()
   const [origin, setOrigin] = useState('')
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const { isOpen, onOpen, onClose } = useDisclosure()
-
-  const drawerEditRef = useRef()
-  const confirmDialogRef = useRef()
 
   const handleEdit = async () => {
     if (origin.length <= 0) {

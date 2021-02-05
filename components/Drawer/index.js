@@ -32,7 +32,7 @@ const Drawer = ({
     >
       <DrawerOverlay>
         <DrawerContent>
-          <DrawerCloseButton />
+          <DrawerCloseButton name="Fechar" />
           <DrawerHeader>{title}</DrawerHeader>
 
           <DrawerBody>
