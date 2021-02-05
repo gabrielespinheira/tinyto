@@ -10,6 +10,8 @@ class MyDocument extends Document {
     return (
       <Html lang="pt-br">
         <Head>
+          <title>{process.env.NEXT_PUBLIC_PROJECT_NAME}</title>
+          <link rel="icon" href="/favicon.ico" />
           <meta
             name="viewport"
             content="minimum-scale=1.0, initial-scale=1.0, maximum-scale=5.0, width=device-width"

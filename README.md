@@ -11,6 +11,7 @@
 - [x] Google Analytics
 - [x] Favicon
 - [x] Lighthouse
+- [ ] PWA
 - [ ] Data de criação e alteração para cada Shortcut
 - [ ] Capturar infos do usuário ao acessar Shortcut
   - [ ] IP

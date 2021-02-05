@@ -82,7 +82,12 @@ const Topbar = ({ drawerNewRef, handleSignOut }) => {
           >
             Novo
           </Button>
-          <Button size="sm" onClick={toggleColorMode} name="Tema">
+          <Button
+            name="Alterar tema"
+            size="sm"
+            onClick={toggleColorMode}
+            title="Tema"
+          >
             {colorMode === 'light' ? <FiMoon /> : <FiSun />}
           </Button>
           <Button

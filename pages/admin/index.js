@@ -1,5 +1,4 @@
-import { useRef } from 'react'
-import Head from 'next/head'
+import React, { useRef } from 'react'
 import { useRouter } from 'next/router'
 import useSWR from 'swr'
 import { Flex, Box, useColorModeValue } from '@chakra-ui/react'
@@ -21,27 +20,20 @@ export default function Admin() {
   }
 
   return (
-    <>
-      <Head>
-        <title>{process.env.NEXT_PUBLIC_PROJECT_NAME}</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <Flex maxW="900px" ml="auto" mr="auto" flexDirection="column">
+      <Topbar handleSignOut={handleSignOut} drawerNewRef={drawerNewRef} />
 
-      <Flex maxW="900px" ml="auto" mr="auto" flexDirection="column">
-        <Topbar handleSignOut={handleSignOut} drawerNewRef={drawerNewRef} />
-
-        <Box bg={useColorModeValue('white', 'gray.700')} borderRadius="md">
-          {!shortcuts || error ? (
-            <Loading />
-          ) : (
-            <Table
-              shortcuts={shortcuts}
-              drawerEditRef={drawerEditRef}
-              confirmDialogRef={confirmDialogRef}
-            />
-          )}
-        </Box>
-      </Flex>
-    </>
+      <Box bg={useColorModeValue('white', 'gray.700')} borderRadius="md">
+        {!shortcuts || error ? (
+          <Loading />
+        ) : (
+          <Table
+            shortcuts={shortcuts}
+            drawerEditRef={drawerEditRef}
+            confirmDialogRef={confirmDialogRef}
+          />
+        )}
+      </Box>
+    </Flex>
   )
 }

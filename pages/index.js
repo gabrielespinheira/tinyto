@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 
@@ -29,42 +28,35 @@ export default function Home() {
   }
 
   return (
-    <>
-      <Head>
-        <title>{process.env.NEXT_PUBLIC_PROJECT_NAME}</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <Flex
+      maxW="900px"
+      ml="auto"
+      mr="auto"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+      p={12}
+    >
+      <Image
+        src={useColorModeValue('/link.svg', '/link-white.svg')}
+        width="70"
+        height="70"
+        color="red"
+      />
 
-      <Flex
-        maxW="900px"
-        ml="auto"
-        mr="auto"
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="center"
-        p={12}
+      <Heading mt="16" mb="7">
+        {process.env.NEXT_PUBLIC_PROJECT_NAME}
+      </Heading>
+
+      <Button
+        onClick={handleSignIn}
+        size="lg"
+        colorScheme="teal"
+        leftIcon={<AiOutlineGooglePlus size="26" />}
+        name="Login com Google"
       >
-        <Image
-          src={useColorModeValue('/link.svg', '/link-white.svg')}
-          width="70"
-          height="70"
-          color="red"
-        />
-
-        <Heading mt="16" mb="7">
-          {process.env.NEXT_PUBLIC_PROJECT_NAME}
-        </Heading>
-
-        <Button
-          onClick={handleSignIn}
-          size="lg"
-          colorScheme="teal"
-          leftIcon={<AiOutlineGooglePlus size="26" />}
-          name="Login com Google"
-        >
-          Login com Google
-        </Button>
-      </Flex>
-    </>
+        Login com Google
+      </Button>
+    </Flex>
   )
 }
