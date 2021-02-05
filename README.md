@@ -14,6 +14,7 @@ Just a simple **url shortener** with NextJS and Firebase
 - [x] Admin panel to manage links (named as shortcuts)
 - [x] Link access counter
 - [x] API REST
+- [x] Login with Google
 - [x] Token for authentication and authorization with Firebase Auth
 
 ## Next Steps
