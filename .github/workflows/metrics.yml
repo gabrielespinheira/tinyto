@@ -1,0 +1,21 @@
+name: Metrics
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: lowlighter/metrics@latest
+        with:
+          base: ""
+          token: ${{ secrets.METRICS_TOKEN }}
+          plugin_pagespeed: yes
+          plugin_pagespeed_token: ${{ secrets.PAGESPEED_API }}
+          plugin_pagespeed_detailed: yes
+          plugin_pagespeed_screenshot: false
+          plugin_pagespeed_url: "https://tinyto.vercel.app/"

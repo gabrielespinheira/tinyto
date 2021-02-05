@@ -2,11 +2,22 @@
 
 Just a simple **url shortener** with NextJS and Firebase
 
+[Access Now](https://tinyto.vercel.app)
+
+![Metrics](https://github.com/ogabrielaraujo/tinyto/blob/main/github-metrics.svg)
+
 ## Techs
 - [x] NextJS
 - [x] SWR
 - [x] Firebase
 - [x] Chakra UI
+
+## Features
+- [x] Admin panel to manage links (named as shortcuts)
+- [x] Link access counter
+- [x] API REST
+- [x] Login with Google
+- [x] Token for authentication and authorization with Firebase Auth
 
 ## Next Steps
 
@@ -21,7 +32,7 @@ Just a simple **url shortener** with NextJS and Firebase
   - [ ] Navegador
   - [ ] Resolução
 - [ ] Dashboard Analytics
-- [ ] Refactor Atomic Design
+- [ ] Refactor Atomic Design and base components
 - [ ] Testes Automatizados
 - [ ] Documentação configuração projeto e firebase
 - [ ] Documentação Endpoints
