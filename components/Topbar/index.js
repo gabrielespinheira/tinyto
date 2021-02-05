@@ -77,7 +77,7 @@ const Topbar = ({ drawerNewRef, handleSignOut }) => {
             size="sm"
             onClick={onOpen}
             leftIcon={<FiPlus />}
-            colorScheme="teal"
+            colorScheme="cyan"
             name="Novo"
           >
             Novo

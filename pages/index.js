@@ -41,7 +41,7 @@ export default function Home() {
         src={useColorModeValue('/link.svg', '/link-white.svg')}
         width="70"
         height="70"
-        color="red"
+        alt={process.env.NEXT_PUBLIC_PROJECT_NAME}
       />
 
       <Heading mt="16" mb="7">
@@ -51,7 +51,7 @@ export default function Home() {
       <Button
         onClick={handleSignIn}
         size="lg"
-        colorScheme="teal"
+        colorScheme="cyan"
         leftIcon={<AiOutlineGooglePlus size="26" />}
         name="Login com Google"
       >

@@ -63,7 +63,7 @@ const Drawer = ({
             </Button>
             <Button
               size="sm"
-              colorScheme="teal"
+              colorScheme="cyan"
               onClick={handleSubmit}
               name="Salvar"
             >
