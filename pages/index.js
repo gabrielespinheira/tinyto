@@ -44,14 +44,18 @@ export default function Home() {
         alt={process.env.NEXT_PUBLIC_PROJECT_NAME}
       />
 
-      <Heading mt="16" mb="7">
+      <Heading mt="16" mb="3">
         {process.env.NEXT_PUBLIC_PROJECT_NAME}
+      </Heading>
+
+      <Heading size="md" mb="10">
+        {process.env.NEXT_PUBLIC_PROJECT_DESCRIPTION}
       </Heading>
 
       <Button
         onClick={handleSignIn}
         size="lg"
-        colorScheme="cyan"
+        colorScheme={process.env.NEXT_PUBLIC_PROJECT_COLOR}
         leftIcon={<AiOutlineGooglePlus size="26" />}
         name="Login com Google"
       >

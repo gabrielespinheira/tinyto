@@ -77,7 +77,7 @@ const Topbar = ({ drawerNewRef, handleSignOut }) => {
             size="sm"
             onClick={onOpen}
             leftIcon={<FiPlus />}
-            colorScheme="cyan"
+            colorScheme={process.env.NEXT_PUBLIC_PROJECT_COLOR}
             name="Novo"
           >
             Novo

@@ -63,7 +63,7 @@ const Drawer = ({
             </Button>
             <Button
               size="sm"
-              colorScheme="cyan"
+              colorScheme={process.env.NEXT_PUBLIC_PROJECT_COLOR}
               onClick={handleSubmit}
               name="Salvar"
             >
