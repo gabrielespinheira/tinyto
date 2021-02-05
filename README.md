@@ -4,6 +4,8 @@ Just a simple **url shortener** with NextJS and Firebase
 
 [Access Now](https://tinyto.vercel.app)
 
+![Metrics](https://github.com/ogabrielaraujo/tinyto/blob/main/github-metrics.svg)
+
 ## Techs
 - [x] NextJS
 - [x] SWR
