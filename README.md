@@ -9,7 +9,8 @@
 
 - [x] Toast
 - [x] Google Analytics
-- [ ] Lighthouse
+- [x] Favicon
+- [x] Lighthouse
 - [ ] Data de criação e alteração para cada Shortcut
 - [ ] Capturar infos do usuário ao acessar Shortcut
   - [ ] IP

@@ -79,13 +79,19 @@ const Topbar = ({ handleSignOut }) => {
             onClick={onOpen}
             leftIcon={<FiPlus />}
             colorScheme="teal"
+            name="Novo"
           >
             Novo
           </Button>
-          <Button size="sm" onClick={toggleColorMode}>
+          <Button size="sm" onClick={toggleColorMode} name="Tema">
             {colorMode === 'light' ? <FiMoon /> : <FiSun />}
           </Button>
-          <Button size="sm" onClick={handleSignOut} leftIcon={<FiLogOut />}>
+          <Button
+            size="sm"
+            onClick={handleSignOut}
+            leftIcon={<FiLogOut />}
+            name="Sair"
+          >
             Sair
           </Button>
         </ButtonGroup>

@@ -129,6 +129,7 @@ const Table = ({ shortcuts = [] }) => {
                         onOpen()
                       }}
                       leftIcon={<FiEdit3 />}
+                      name="Editar"
                     >
                       Editar
                     </Button>
@@ -139,6 +140,7 @@ const Table = ({ shortcuts = [] }) => {
                         setIsDialogOpen(true)
                       }}
                       leftIcon={<FiTrash />}
+                      name="Excluir"
                     >
                       Excluir
                     </Button>
@@ -146,6 +148,7 @@ const Table = ({ shortcuts = [] }) => {
                       size="sm"
                       onClick={() => handleOpen(shortcut.code)}
                       leftIcon={<FiSend />}
+                      name="Acessar"
                     >
                       Acessar
                     </Button>

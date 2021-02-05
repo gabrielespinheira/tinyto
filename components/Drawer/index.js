@@ -52,10 +52,21 @@ const Drawer = ({
           </DrawerBody>
 
           <DrawerFooter>
-            <Button size="sm" mr={3} variant="outline" onClick={onClose}>
+            <Button
+              size="sm"
+              mr={3}
+              variant="outline"
+              onClick={onClose}
+              name="Cancelar"
+            >
               Cancelar
             </Button>
-            <Button size="sm" colorScheme="teal" onClick={handleSubmit}>
+            <Button
+              size="sm"
+              colorScheme="teal"
+              onClick={handleSubmit}
+              name="Salvar"
+            >
               Salvar
             </Button>
           </DrawerFooter>

@@ -60,6 +60,7 @@ export default function Home() {
           size="lg"
           colorScheme="teal"
           leftIcon={<AiOutlineGooglePlus size="26" />}
+          name="Login com Google"
         >
           Login com Google
         </Button>

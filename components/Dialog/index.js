@@ -20,10 +20,16 @@ const Dialog = ({ ref, title, message, isOpen, onClose, handleSubmit }) => {
           <AlertDialogBody>{message}</AlertDialogBody>
 
           <AlertDialogFooter>
-            <Button size="sm" ref={ref} onClick={onClose}>
+            <Button size="sm" ref={ref} onClick={onClose} name="Cancelar">
               Cancelar
             </Button>
-            <Button size="sm" colorScheme="red" onClick={handleSubmit} ml={3}>
+            <Button
+              size="sm"
+              colorScheme="red"
+              onClick={handleSubmit}
+              ml={3}
+              name="Excluir"
+            >
               Excluir
             </Button>
           </AlertDialogFooter>
