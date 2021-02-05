@@ -1,11 +1,14 @@
-# URL Shortener
+# TinyTo
 
+Just a simple **url shortener** with NextJS and Firebase
+
+## Techs
 - [x] NextJS
 - [x] SWR
 - [x] Firebase
 - [x] Chakra UI
 
-### To Do
+## Next Steps
 
 - [x] Toast
 - [x] Google Analytics
